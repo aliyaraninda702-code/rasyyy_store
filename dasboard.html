@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pengelompokkan Barang</title>
+    <link rel="stylesheet" href="dasboard.css?v=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+
+<!-- SIDEBAR + MAIN CONTENT -->
+<div class="sidebar">
+    <!-- PROFILE SECTION -->
+    <div class="profile-section">
+        <a href="profil.html" class="profile-link">
+            <div class="profile-img">
+                <img src="foto.jpeg" alt="Profile" id="sidebarProfileImg">
+            </div>
+            <div class="profile-info">
+                <span class="profile-name">NINDA&LUSY</span>
+                <span class="profile-role">Store Manager</span>
+            </div>
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html" class="nav-link">
+            <i class="fas fa-list"></i>
+            <span>Input Barang</span>
+        </a>
+        <a href="dasboard.html" class="nav-link active">
+            <i class="fas fa-chart-bar"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-cog"></i>
+            <span>Pengaturan</span>
+        </a>
+    </nav>
+</div>
+
+<div class="main-content">
+    <!-- HEADER -->
+    <header class="header">
+        <h1><i class="fas fa-tachometer-alt"></i> Dashboard Analitik</h1>
+        <div class="stats">
+            <span id="totalItems">0</span> Total Barang
+        </div>
+    </header>
+
+    <!-- CARDS -->
+    <div class="cards-grid">
+        <div class="stat-card" data-category="all">
+            <i class="fas fa-boxes-stacked"></i>
+            <div>
+                <span class="card-number" id="totalAll">0</span>
+                <span class="card-label">Total Barang</span>
+            </div>
+        </div>
+        <div class="stat-card" data-category="elektronik">
+            <i class="fas fa-laptop"></i>
+            <div>
+                <span class="card-number" id="totalElektronik">0</span>
+                <span class="card-label">Elektronik</span>
+            </div>
+        </div>
+        <div class="stat-card" data-category="perabotan">
+            <i class="fas fa-chair"></i>
+            <div>
+                <span class="card-number" id="totalPerabotan">0</span>
+                <span class="card-label">Perabotan</span>
+            </div>
+        </div>
+        <div class="stat-card" data-category="dapur">
+            <i class="fas fa-utensils"></i>
+            <div>
+                <span class="card-number" id="totalDapur">0</span>
+                <span class="card-label">Peralatan Dapur</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-section">
+        <div class="chart-card">
+            <h3>📊 Distribusi Kategori</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>📋 Item Terbaru</h3>
+            <div id="recentItems">Loading...</div>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-section">
+        <h3>📋 Semua Data Barang</h3>
+        <div class="table-container">
+            <table id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Barang</th>
+                        <th>Kategori</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="dasboard.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Multi-page Photo Sync
+        const savedPhoto = localStorage.getItem('profilePhoto');
+        if (savedPhoto) {
+            const sidebarImg = document.getElementById('sidebarProfileImg');
+            if (sidebarImg) sidebarImg.src = savedPhoto;
+        }
+    });
+</script>
+</body>
+
+</html>

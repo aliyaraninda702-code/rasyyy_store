@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pengelompokkan Barang Otomatis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<!-- NAVBAR SIMPEL -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <img src="logo.png" alt="Logo" style="width: 40px; height: 40px; object-fit: contain; margin-right: 12px;">
+            <span style="font-family: 'Unbounded'; font-weight: 700;">rasyyy store</span>
+        </div>
+        </li>
+        <li class="nav-item">
+            <a href="dasboard.html" class="nav-link dasboard-btn">
+                <i class="fas fa-chart-line"></i> Dasboard
+            </a>
+        </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="main-content">
+    <div class="header">
+        <h1><i class="fas fa-shopping-bag"></i> Input Barang</h1>
+        <p>Masukkan nama barang untuk dikelompokkan otomatis.</p>
+    </div>
+
+    <div class="form-section">
+        <h2>Tambah Barang Baru</h2>
+        <form id="itemForm">
+            <input type="text" id="itemName" placeholder="Contoh: kulkas, kursi, tv, meja makan..." required>
+            <button type="submit">
+                <i class="fas fa-plus"></i> Tambah
+            </button>
+        </form>
+    </div>
+
+    <div class="categories" id="categories"></div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sync profile photo (if any element exists)
+        const savedPhoto = localStorage.getItem('profilePhoto');
+        // No profile icons currently on home, but ready for future
+    });
+</script>
+</body>
+
+</html>

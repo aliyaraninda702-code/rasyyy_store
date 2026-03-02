@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - NINDA&LUSY Store</title>
+    <link rel="stylesheet" href="dasboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Unbounded:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            background: var(--glass-main);
+            backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-glow);
+            border-radius: 2rem;
+            padding: 3rem;
+            box-shadow: 0 40px 100px rgba(42, 31, 94, 0.6);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .profile-avatar-large {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--aurora-7);
+            padding: 5px;
+            background: var(--glass-glow);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 30px rgba(247, 119, 184, 0.4);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-avatar-large img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 60%;
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+
+        .avatar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .profile-avatar-large:hover .avatar-overlay {
+            opacity: 1;
+        }
+
+        .profile-avatar-large:hover img {
+            transform: scale(1.1);
+            filter: blur(2px);
+        }
+
+        .avatar-overlay i {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .avatar-overlay span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        #photoInput {
+            display: none;
+        }
+
+        .profile-title {
+            font-family: 'Unbounded', cursive;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--aurora-5), var(--aurora-7));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-subtitle {
+            color: var(--text-dim);
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-glow);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.02);
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--aurora-7);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 300;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--glass-glow);
+            border: 1px solid var(--glass-glow);
+            border-radius: 1.25rem;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.95rem;
+        }
+
+        .social-btn i {
+            font-size: 1.5rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .social-btn:hover {
+            background: var(--aurora-7);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(247, 119, 184, 0.4);
+        }
+
+        .social-btn:hover {
+            background: var(--aurora-7);
+            color: white;
+            transform: translateY(-8px) rotate(8deg);
+            box-shadow: 0 15px 30px rgba(247, 119, 184, 0.4);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--aurora-7);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content" style="margin-left: 0; padding: 4rem 2rem;">
+        <div class="profile-container">
+            <div class="profile-card">
+                <a href="dasboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+                </a>
+
+                <div class="profile-header">
+                    <div class="profile-avatar-large" onclick="document.getElementById('photoInput').click()">
+                        <img src="foto.jpeg" alt="Avatar" id="mainProfileImg">
+                        <div class="avatar-overlay">
+                            <i class="fas fa-camera"></i>
+                            <span>Edit Foto</span>
+                        </div>
+                    </div>
+                    <input type="file" id="photoInput" accept="image/*">
+                    <h1 class="profile-title">NINDA&LUSY</h1>
+                    <p class="profile-subtitle">Pengembang Sistem & Store Manager</p>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label"><i class="fas fa-school"></i> Sekolah</div>
+                        <div class="info-value">SMK N 1 BANTUL</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label"><i class="fas fa-graduation-cap"></i> Jurusan</div>
+                        <div class="info-value">Teknik Komputer dan Jaringan</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label"><i class="fas fa-map-marker-alt"></i> Alamat</div>
+                        <div class="info-value">Jl. Begal Hati No. 123, Kota HTS</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label"><i class="fas fa-envelope"></i> Kontak</div>
+                        <div class="info-value"><span>admin@nindalusystore.com</span></div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/alysftr.__/?utm_source=ig_web_button_share_sheet" target="_blank"
+                        class="social-btn">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram Ninda</span>
+                    </a>
+                    <a href="https://www.instagram.com/lucy.anxgzz_/?utm_source=ig_web_button_share_sheet"
+                        target="_blank" class="social-btn">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram Lusy</span>
+                    </a>
+                    <a href="https://wa.me/6283128392442" target="_blank" class="social-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Ninda</span>
+                    </a>
+                    <a href="https://wa.me/628971554395" target="_blank" class="social-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Lusy</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const photoInput = document.getElementById('photoInput');
+            const mainProfileImg = document.getElementById('mainProfileImg');
+
+            // Load saved image from localStorage
+            const savedPhoto = localStorage.getItem('profilePhoto');
+            if (savedPhoto) {
+                mainProfileImg.src = savedPhoto;
+            }
+
+            // Handle file selection (Direct without cropping)
+            photoInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Ukuran file terlalu besar. Maksimal 5MB.');
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const base64Image = event.target.result;
+                        // Update UI
+                        mainProfileImg.src = base64Image;
+                        // Save to localStorage
+                        localStorage.setItem('profilePhoto', base64Image);
+                        alert('Foto profil berhasil diperbarui!');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
